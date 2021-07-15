@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Update Student</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    
+</head>
+<body>
+<div class="wrapper">
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2"></div>
+              <div class="col-md-8 col-lg-8 col-sm-8">
+                  <h2 class="mt-5">Update Student</h2>
+                  <p>Please fill this form and submit to update student record to the database.</p>
+                  <form action="/update" method="POST">
+                      <div class="form-group">
+                          <label>Name<span class="text-danger">*</span></label>
+                          <input type="text" name="name" class="form-control" required value="<%= student.name %>">
+                      </div>
+                      <div class="form-group">
+                          <label>Contact<span class="text-danger">*</span></label>
+                          <input type="number" name="contact" class="form-control" required value="<%= student.contact %>">
+                      </div>
+                      <div class="form-group">
+                          <label>Subjects<span class="text-danger">*</span></label><br>
+                          <select class="selectpicker" name="subjects" multiple data-live-search="false" required>
+                            <option value="subject1" <%= student.subjects.includes("subject1") ? 'selected' : '' %>>Subject 1</option>
+                            <option value="subject2" <%= student.subjects.includes("subject2") ? 'selected' : '' %>>Subject 2</option>
+                            <option value="subject3" <%= student.subjects.includes("subject3") ? 'selected' : '' %>>Subject 3</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Class<span class="text-danger">*</span></label>
+                        <input type="text" name="class" class="form-control" required value="<%= student.class %>">
+                      </div>
+                      <div class="form-group">
+                        <label>Society</label>
+                        <select class="selectpicker" name="society" multiple data-live-search="false">
+                          <option value="society1" <%= student.society && student.society.includes("society1") ? 'selected' : '' %>>Society 1</option>
+                          <option value="society2" <%= student.society && student.society.includes("society2") ? 'selected' : '' %>>Society 2</option>
+                          <option value="society3" <%= student.society && student.society.includes("society3") ? 'selected' : '' %>>Society 3</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Year<span class="text-danger">*</span></label>
+                        <input type="number" name="year" class="form-control" required value="<%= student.year %>">
+                      </div>
+                      <input type="hidden" value="<%= student._id %>" name="id" required>
+
+                      <input type="submit" class="btn btn-primary" value="Update">
+                  </form>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            </div>        
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Students</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 sol-lg-12"></div>          	
+                    <div class="mt-5 mb-3 w-100 mx-5 px-5">
+                        <h2 class="pull-left">Students</h2>
+                        <a href="/add" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Student</a>
+                    </div>
+                    <% if(students.length > 0) { %>
+                        <table class="table py-5 text-center">
+                            <thead>
+                                <tr class="table-dark text-dark">
+                                    <th>Sr. No</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Subjects</th>
+                                    <th>Class</th>
+                                    <th>Society</th>
+                                    <th>Year</th>
+                                    <th>Actions</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% students.forEach((student,index) => { %>
+                                    <tr>
+                                        <td><%=index + 1 %></td>
+                                        <td><%=student.name %></td>
+                                        <td><%=student.contact %></td>
+                                        <td>
+                                            <ul>
+                                                <% student.subjects.forEach((subject) => { %>
+                                                    <li><%=subject %></li>
+                                                <% }) %>
+                                            </ul>
+                                        </td>
+                                        <td><%= student.class %></td>
+                                        <td>
+                                            <ul>
+                                                <% if(student.society && student.society.length > 0) { %>
+                                                    <% student.society.forEach((soc) => { %>
+                                                        <li><%= soc %></li>
+                                                    <% }) %>
+                                                <% } else { %>
+                                                    NA
+                                                <% } %>
+                                            </ul>
+                                        </td>
+                                        <td><%= student.year %></td>
+                                        <td>
+                                        <a href="/update/<%= student._id.toString() %>" class="btn btn-info"><i class="fa fa-plus"></i> Update</a>
+                                        <a href="/delete/<%= student._id.toString() %>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <div class="container jumbotron text-center bg-secondary">
+                            <h4>No Customers</h4>
+                        </div>
+                    <% } %>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+</body>
+</html>
